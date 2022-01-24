@@ -15,9 +15,11 @@ import AppsIcon from "@material-ui/icons/Apps";
 import AddIcon from "@material-ui/icons/Add";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import { useStateValue } from "./StateProvider";
 
 function Sidebar() {
   const [channels, setChannels] = useState([]);
+  const [{ user }] = useStateValue();
 
   useEffect(() => {
     db.collection("rooms").onSnapshot((snapshot) => {
@@ -38,7 +40,7 @@ function Sidebar() {
           <h2>O'Neal</h2>
           <h3>
             <FiberManualRecordIcon />
-            O'neal williams's
+            {user?.displayName}
           </h3>
         </div>
         <CreateIcon />
